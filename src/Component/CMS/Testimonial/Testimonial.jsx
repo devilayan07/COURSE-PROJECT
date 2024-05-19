@@ -19,10 +19,10 @@ function Testimonial() {
         <Typography variant='body2' textAlign={"center"} sx={{marginTop:"10px"}}> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore quibusdam distinctio quis beatae? Architecto minima similique praesentium aliquam provident maxime non soluta adipisci unde dolorem!   </Typography>
         <Grid container alignItems="center" justifyContent="center">
           {
-            Array.isArray(Testimonials.testimonial) && Testimonials.testimonial.map((item,index)=><Grid item xs={12} md={4}  sx={{marginTop:"30px",paddingLeft:"10px"}}>
+            Array.isArray(Testimonials.testimonial) && Testimonials.testimonial.map((item,index)=><Grid item xs={12} md={4} sm={6}  sx={{marginTop:"30px",paddingLeft:"10px"}}>
                           <Card sx={{maxWidth:390,height:"480px"}}>
                 <CardMedia component="img"
-                  height="200"
+                  height="250"
                   image={testimonial_pic(item._id)}
                 />
             <CardContent>

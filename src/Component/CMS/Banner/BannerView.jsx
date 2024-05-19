@@ -97,14 +97,15 @@ function BannerView() {
                 >
                   {step.description}
                 </Typography>
-                {
-                  navItems.map((item,index)=>                 <Link to={`/${item}`}><Button variant='outlined' size='small' sx={{               position: "absolute",
+                               <Button variant='outlined' size='small' sx={{               position: "absolute",
                   bottom: "20px",
                   left: "50%",
                   transform: "translateX(-50%)",
-   }}>Read More</Button></Link>
-    )
-                }
+   }}>Read More</Button>
+    
+                
+
+
               </Box>
             </Box>
           )}

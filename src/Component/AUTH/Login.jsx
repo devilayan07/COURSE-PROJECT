@@ -17,6 +17,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../ReduxToolkit/AuthSlice';
+import { IconButton,InputAdornment } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function Copyright(props) {
   return (
@@ -45,8 +48,11 @@ export default function Login() {
     password: "",
   });
   const [error, setError] = useState("");
-  // const[loading,setLoading]=useState(true)
+  const[isvisible,setVisible]=useState(false)
 
+  const toggle=()=>{
+    setVisible(!isvisible)
+  }
 
   const validation = () => {
     let error = {};
@@ -169,9 +175,20 @@ useEffect(()=>{
               onChange={postUserData}
               value={user.password}
               label="Password"
-              type="password"
+              type={!isvisible ? "password" : "text"}
               id="password"
               autoComplete="current-password"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={toggle} className="icon"> 
+                      {isvisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+
+
             />
               <span style={{color:"red"}}>
     {" "}
@@ -216,7 +233,7 @@ useEffect(()=>{
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to="/update" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>

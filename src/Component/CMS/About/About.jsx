@@ -22,7 +22,7 @@ function About() {
       <Typography variant='body2' textAlign="center" sx={{padding:"20px"}}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi officiis dolorem quam consequuntur consequatur tenetur ab error vitae molestiae repudiandae est facere, voluptatem alias esse repellat aspernatur pariatur natus quo?  </Typography>
       <Grid container>
         {
-          Array.isArray(Team.team) && Team.team.map((item,index)=> <Grid item xs={12} md={3} sx={{marginTop:"30px"}}>
+          Array.isArray(Team.team) && Team.team.map((item,index)=> <Grid item xs={12} md={3} sm={6} sx={{marginTop:"30px"}}>
                 <Card sx={{ maxWidth: 360,height:"420px" }}>
       <CardMedia
         sx={{ height: 290 }}

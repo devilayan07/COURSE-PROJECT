@@ -9,7 +9,13 @@ export const register=createAsyncThunk("/user/register",async(formdata)=>{
 
 export const login=createAsyncThunk("/user/login",async(data)=>{
     const response=await axiosInstance.post("/login",data)
+    console.log(response.data)
     return response.data
+})
+
+export const update=createAsyncThunk("/update-password",async(data1)=>{
+  const response=await axiosInstance.post("/update-password",data1)
+  return response.data
 })
 
 const AuthSlice=createSlice({
@@ -53,7 +59,11 @@ const AuthSlice=createSlice({
       })
       builder.addCase(register.fulfilled,(state,action)=>{
         state.status="idle"
-        if(action.payload?.status===200){
+        // localStorage.setItem("userid",action.payload?.data._id)
+        // localStorage.setItem("token1",action.payload?.token)
+
+        if(action.payload?.status===true){
+
             toast(action.payload?.message);
 
         }
@@ -75,6 +85,7 @@ const AuthSlice=createSlice({
         if(action.payload?.status===200){
           state.redirectTo="/"
             localStorage.setItem("token",action.payload?.token)
+            localStorage.setItem("userid",action.payload?.user._id)
             state.isloggedIn=true;
 
             toast(action.payload?.message);
@@ -93,6 +104,19 @@ const AuthSlice=createSlice({
       builder.addCase(login.rejected,(state)=>{
         state.status="idle"
 
+      })
+
+      builder.addCase(update.pending,(state)=>{
+        state.status="loading"
+      })
+      builder.addCase(update.fulfilled,(state,action)=>{
+        state.status="idle"
+        if(action.payload?.success===true){
+          toast(action.payload?.msg)
+        }
+      })
+      builder.addCase(update.rejected,(state)=>{
+        state.status="idle"
       })
     }
 

@@ -15,6 +15,7 @@ import { check_token } from './ReduxToolkit/AuthSlice';
 // import Contact from './Component/CMS/Contact/Contact';
 import { toast } from 'react-toastify';
 import Loader from './Component/Loader/Loader';
+import Footer from './LAYOUT/Footer/Footer';
 
 const Home=lazy(()=> import("./Component/CMS/Home/Home") )
 const Registration=lazy(()=>import("./Component/AUTH/Registration"))
@@ -26,7 +27,7 @@ const Blog=lazy(()=>import("./Component/CMS/Blog/Blog"))
 const ApplyCourse=lazy(()=>import("./Component/CMS/ApplyCourse/ApplyCourse"))
 const BlogDetails=lazy(()=>import("./Component/CMS/BlogDetails/BlogDetails"))
 const Contact=lazy(()=>import("./Component/CMS/Contact/Contact"))
-
+const Updatepassword=lazy(()=> import("./Component/AUTH/Updatepassword"))
 
 
 function PrivateRoute({children}){
@@ -56,7 +57,12 @@ const PublicRouteNames=[
   {
     path:"/registration",
     Component:<Registration/>
+  },
+  {
+    path:"/update",
+    Component:<Updatepassword/>
   }
+
 ]
 
 const PrivateRouteNames=[
@@ -128,6 +134,7 @@ function App() {
             })
           }
         </Routes>
+        <Footer/>
       </Router>
       </Suspense>
     </div>

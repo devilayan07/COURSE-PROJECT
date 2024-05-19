@@ -36,6 +36,7 @@ function Header() {
 
     const logout=()=>{
       dispatch(handleLoggedout())
+      // localStorage.clear()
     }
   return (
     
@@ -62,6 +63,7 @@ function Header() {
                     <Tab sx={{color:"green"}} label="Courses" to="/course" component={Link}/>
                     <Tab sx={{color:"green"}} label="Blog" to="/blog" component={Link}/>
                     <Tab sx={{color:"green"}} label="Contact" to="/contact" component={Link}/>
+                    <Tab sx={{color:"green"}} label="Update Password" to="/update" component={Link}/>
 
 
 

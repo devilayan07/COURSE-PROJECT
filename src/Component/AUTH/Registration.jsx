@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -17,7 +16,10 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { register } from '../../ReduxToolkit/AuthSlice';
 import { useDispatch } from 'react-redux';
-
+import { Link } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { IconButton,InputAdornment } from '@mui/material';
 
 
 function Copyright(props) {
@@ -60,6 +62,12 @@ export default function Registration() {
   const [error,setError]=useState("")
   const[loading,setLoading]=useState(true)
   const[img,setimg]=useState("")
+  const[isvisible,setVisible]=useState(false)
+
+  const toggle = () => {
+    setVisible(!isvisible);
+  };
+
 
 
   const validation=()=>{
@@ -121,7 +129,7 @@ export default function Registration() {
    formdata.append("mobile",user.mobile)
    formdata.append("email",user.email)
    formdata.append("password",user.password)
-   formdata.append("image",img)
+   formdata.append("photo",img)
 
     dispatch(register(formdata));
     // setUser({
@@ -264,25 +272,40 @@ export default function Registration() {
                 </span>
 
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} >
                 <TextField
                   required
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={!isvisible ? "password" : "text"}
                   id="password"
                   autoComplete="new-password"
                   value={user.password}
                   onChange={postUserData}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={toggle} className="icon"> 
+                          {isvisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+              
 
-                />
-                 <span style={{color:"red"}}>
+
+                  />
+
+<span style={{color:"red"}}>
                   {" "}
                   {error.password} {" "}
                 </span>
 
+
               </Grid>
+
+
               
               {/* <Button
       component="label"
@@ -350,7 +373,7 @@ export default function Registration() {
                 size="large"
                 type="submit"
               >
-                SIGN IN
+                SIGN UP
               </Button>
             ) : (
               <Button
@@ -367,8 +390,9 @@ export default function Registration() {
 
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to={""} variant="body2">
-                  Sign Up
+                <Link to={"/login"} variant="body2">
+                Already have an account? Sign in
+
                 </Link>
               </Grid>
             </Grid>

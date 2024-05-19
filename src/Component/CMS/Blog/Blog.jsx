@@ -20,12 +20,21 @@ function Blog() {
     dispatch(fetchPost())
   },[dispatch])
 
+  // const truncatedText = (text, maxLength) => {
+  //   if (text.length > maxLength) {
+  //     return text.substring(0, maxLength) + "....";
+  //   }
+  //   return text;
+  // };
+
   const truncatedText = (text, maxLength) => {
     if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "....";
+        text = text.substring(0, maxLength);
+        text = text.replace(/<[^>]*>/g, ''); 
+        return text + "....";
     }
     return text;
-  };
+};
 
   const handleChange=(e)=>{
     setOutput(e.target.value)
@@ -61,7 +70,7 @@ function Blog() {
           <Grid item md={8} xs={12}>
             {
               Blogs.blog.length === 0   ? (
-                <Typography variant='h5' sx={{marginTop:"40px"}}>No Data</Typography>
+                <Typography variant='h5' textAlign="center" sx={{marginTop:"40px"}}>No Data</Typography>
               ) : (
                 <>
                   {
