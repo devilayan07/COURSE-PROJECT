@@ -35,9 +35,6 @@ const AuthSlice=createSlice({
 
       handleLoggedout: (state, { payload }) => {
           localStorage.removeItem("token");
-          // localStorage.removeItem("Name");
-          // localStorage.removeItem("image");
-          // localStorage.removeItem("title");
           state.isloggedIn = false;
           toast("Logout SuccessFull");
         },
@@ -59,23 +56,16 @@ const AuthSlice=createSlice({
       })
       builder.addCase(register.fulfilled,(state,action)=>{
         state.status="idle"
-        // localStorage.setItem("userid",action.payload?.data._id)
-        // localStorage.setItem("token1",action.payload?.token)
 
         if(action.payload?.status===true){
 
             toast(action.payload?.message);
 
         }
-        else{
-            if(action.payload?.status===201){
-                toast(action.payload?.message);
-
-            }
-        }
       })
       builder.addCase(register.rejected,(state,action)=>{
         state.status="idle"
+        toast.error("Registration error")
       })
       builder.addCase(login.pending,(state)=>{
         state.status="loading"
@@ -92,17 +82,11 @@ const AuthSlice=createSlice({
 
 
         }
-        else{
-            if(action.payload?.status===201){
-                toast(action.payload?.message);
-
-
-            }
-        }
 
       })
       builder.addCase(login.rejected,(state)=>{
         state.status="idle"
+        toast.error("login error")
 
       })
 

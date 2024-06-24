@@ -19,13 +19,14 @@ const ContactSlice=createSlice({
         })
         builder.addCase(fetchContact.fulfilled,(state,action)=>{
             state.status="idle"
-            if(action.payload?.status===200){
+            if(action.payload?.success===true){
                 toast(action.payload?.message)
             }
 
         })
         builder.addCase(fetchContact.rejected,(state,action)=>{
             state.status="idle"
+            toast.error("Contact error")
 
         })
 

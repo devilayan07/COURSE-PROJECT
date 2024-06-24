@@ -49,10 +49,7 @@ const CourseSlice=createSlice({
      })
      builder.addCase(fetchApply.fulfilled,(state,action)=>{
         state.status="idle"
-        if(action.payload?.status===200){
-            toast(action.payload?.message)
-
-        }
+        toast.success("You apply course successfully")
      })
      builder.addCase(fetchApply.rejected,(state,action)=>{
         state.status="error"
